@@ -4,62 +4,74 @@
     <title>Analizador Léxico</title>
     <style>
         body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fondo oscuro para un estilo más intenso */
+            color: #c0c0c0; /* Gris claro para el texto */
+            font-family: 'Courier New', monospace; /* Fuente monoespaciada para un look más técnico y punk */
+            font-size: 16px;
         }
         .container {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 20px;
         }
         textarea {
-            width: 50%;
-            height: 100px;
+            width: 60%;
+            height: 150px;
+            background-color: #282828; /* Fondo oscuro para el textarea */
+            color: #f0f0f0; /* Texto claro para mejor visibilidad */
+            border: 2px solid #e63946; /* Borde rojo brillante para un toque punk */
+            padding: 10px;
+            border-radius: 12px; /* Bordes redondeados */
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 10px #e63946; /* Sombra externa para un efecto dramático */
         }
         input[type="submit"], .upload-btn {
-            background-color: #FFBB00;
+            background-color: #e63946; /* Un rojo brillante para destacar */
             border: none;
-            color: black;
-            padding: 10px 20px;
+            color: white;
+            padding: 12px 24px;
             text-align: center;
             display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            font-size: 18px;
+            margin: 10px 2px;
             cursor: pointer;
+            border-radius: 12px; /* Bordes redondeados */
+            box-shadow: 0 0 5px #e63946; /* Sombra para un efecto más dramático */
+            transition: transform 0.3s;
         }
         .upload-btn input {
             display: none;
         }
         table {
-            width: 90%;
-            margin: auto;
+            width: 80%;
+            margin: 20px auto;
             border-collapse: collapse;
-            border: 1px solid white;
+            border-radius: 12px;
+            overflow: hidden;
         }
         td, th {
-            padding: 5px;
+            padding: 8px;
             vertical-align: top;
             white-space: pre-wrap;
-            border: 1px solid white;
+            border: 1px solid #c0c0c0;
+            font-family: 'Courier New', monospace;
         }
         th {
-            background-color: #FFBB00;
-            color: black;
+            background-color: #e63946;
+            color: white;
         }
         .notification {
-            background-color: #FFBB00;
-            color: black;
+            background-color: #e63946;
+            color: white;
             padding: 10px;
             margin-bottom: 15px;
             display: inline-block;
-            border-radius: 5px;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Analizador Léxico</h1>
-
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div class="notification">
@@ -70,7 +82,6 @@
             {% endif %}
         {% endwith %}
 
-        <!-- Formulario para subir archivos -->
         <form action="/" method="post" enctype="multipart/form-data">
             <label class="upload-btn">
                 Seleccionar archivo
@@ -84,7 +95,6 @@
             <p>Archivo cargado: {{ file_name }}</p>
         {% endif %}
 
-        <!-- Formulario para analizar el código -->
         <form action="/" method="post">
             <label for="codigo">Inserta Código a Analizar</label>
             <br>
@@ -111,3 +121,4 @@
     </div>
 </body>
 </html>
+
