@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+    <title>Analizador Léxico</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        textarea {
+            width: 50%;
+            height: 100px;
+        }
+        input[type="submit"], .upload-btn {
+            background-color: #FFBB00;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .upload-btn input {
+            display: none;
+        }
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            border: 1px solid white;
+        }
+        td, th {
+            padding: 5px;
+            vertical-align: top;
+            white-space: pre-wrap;
+            border: 1px solid white;
+        }
+        th {
+            background-color: #FFBB00;
+            color: black;
+        }
+        .notification {
+            background-color: #FFBB00;
+            color: black;
+            padding: 10px;
+            margin-bottom: 15px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analizador Léxico</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Formulario para subir archivos -->
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label class="upload-btn">
+                Seleccionar archivo
+                <input type="file" name="file">
+            </label>
+            <br>
+            <input type="submit" value="Subir archivo">
+        </form>
+
+        {% if file_name %}
+            <p>Archivo cargado: {{ file_name }}</p>
+        {% endif %}
+
+        <!-- Formulario para analizar el código -->
+        <form action="/" method="post">
+            <label for="codigo">Inserta Código a Analizar</label>
+            <br>
+            <textarea name="codigo">{{ codigo }}</textarea><br>
+            <input type="submit" name="analizar" value="Analizar código">
+        </form>
+
+        {% if tokens %}
+            <table>
+                <tr>
+                    <th>LINEA</th>
+                    <th>TIPO</th>
+                    <th>SIMBOLO</th>
+                </tr>
+                {% for token in tokens %}
+                    <tr>
+                        <td>{{ token[0] }}</td>
+                        <td>{{ token[1] }}</td>
+                        <td>{{ token[2] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
